@@ -1,4 +1,6 @@
 import serial
+import cv2
+import time
 
 class SerialWrapper:
 
@@ -12,9 +14,14 @@ class SerialWrapper:
 def main():
     ser = SerialWrapper('COM4')
     
+    #Runs code sequence. This is the loop()
     while 1:
+        ser.sendData("M0,0,100,")
+        time.sleep(5)
         ser.sendData("M100,0,100,")
-        sleep(1)
+        time.sleep(5)
+        ser.sendData("M100,0,0,")
+        time.sleep(5)
     
 if __name__ == "__main__":
     main()

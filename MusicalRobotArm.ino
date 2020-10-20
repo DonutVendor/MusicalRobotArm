@@ -1,6 +1,5 @@
 #include <Braccio.h>
 #include <Servo.h>
-#include <Firmata.h>
 #include <math.h>
 
 Servo base;
