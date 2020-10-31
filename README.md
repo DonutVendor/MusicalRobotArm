@@ -11,3 +11,5 @@ Orange - https://orange.biolab.si/
 PySerial - https://pypi.org/project/pyserial/   [PySerial Docs](https://pythonhosted.org/pyserial/shortintro.html#opening-serial-ports)
 
 REBeL - https://github.com/msunardi/rebel_ros
+
+MIDIUtil - https://github.com/MarkCWirt/MIDIUtil 

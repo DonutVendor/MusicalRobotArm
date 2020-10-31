@@ -41,13 +41,17 @@ void setup() {
 
   Serial.begin(9600);
 
-  Braccio.begin();
+  restartBraccio();
 
-  callHome();
+  //callHome();
 
   Serial.println("Booted and Ready!");
 
   //testRun();
+}
+
+void restartBraccio(){
+  Braccio.begin();
 }
 
 void callHome(){
@@ -110,6 +114,11 @@ void loop() {
       currentCoord = 0;
       inputType = 6;
       closeClaw();
+    }else if(c == 'R'){
+      lastInput=""; //clears variable for new input ?
+      currentCoord = 0;
+      inputType = 7;
+      restartBraccio();
     }
     else if (inputType == 0 && c == ',') {
       if(currentCoord == 0){
