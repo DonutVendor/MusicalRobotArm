@@ -12,4 +12,4 @@ PySerial - https://pypi.org/project/pyserial/   [PySerial Docs](https://pythonho
 
 REBeL - https://github.com/msunardi/rebel_ros
 
-MIDIUtil - https://github.com/MarkCWirt/MIDIUtil 
+MIDIUtil - https://github.com/MarkCWirt/MIDIUtil  [Docs](https://pypi.org/project/MIDIUtil/)
