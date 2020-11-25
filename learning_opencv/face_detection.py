@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
-face_cascade = cv2.CascadeClassifier('./opencv/data/haarcascades/haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier('./opencv/data/haarcascades/haarcascade_eye.xml')
+face_cascade = cv2.CascadeClassifier('../opencv/data/haarcascades/haarcascade_frontalface_default.xml')
+eye_cascade = cv2.CascadeClassifier('../opencv/data/haarcascades/haarcascade_eye.xml')
 
 cam = 'http://10.0.0.212:4747/mjpegfeed'
 
