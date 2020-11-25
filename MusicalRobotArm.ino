@@ -41,7 +41,10 @@ void setup() {
 
   Serial.begin(9600);
 
-  restartBraccio();
+  pinMode(12, OUTPUT);    //you need to set HIGH the pin 12
+  digitalWrite(12, HIGH);
+  
+  Braccio.begin(SOFT_START_DISABLED);
 
   //callHome();
 
@@ -65,6 +68,16 @@ void openClaw(){
 
 void closeClaw(){
   thetaGripper = 73;
+  Braccio.ServoMovement(20, thetaBase, thetaShoulder, thetaElbow, thetaWristVertical, thetaWristRotation, thetaGripper);
+}
+
+void rotateClaw1(){
+  thetaWristRotation += 90;
+  Braccio.ServoMovement(20, thetaBase, thetaShoulder, thetaElbow, thetaWristVertical, thetaWristRotation, thetaGripper);
+}
+
+void rotateClaw2(){
+  thetaWristRotation -= 90;
   Braccio.ServoMovement(20, thetaBase, thetaShoulder, thetaElbow, thetaWristVertical, thetaWristRotation, thetaGripper);
 }
 
@@ -105,9 +118,9 @@ void loop() {
       lastInput=""; //clears variable for new input ?
       currentCoord = 0;
       inputType = 5;
-      moveTo(xMove, yMove - 25, zMove, 10);
+      moveTo(xMove, yMove + 25, zMove, 10);
       delay(100);
-      moveTo(xMove, yMove + 25, zMove, 5);
+      moveTo(xMove, yMove - 25, zMove, 5);
     }
     else if(c == 'C'){
       lastInput=""; //clears variable for new input ?
@@ -119,6 +132,16 @@ void loop() {
       currentCoord = 0;
       inputType = 7;
       restartBraccio();
+    }else if(c == 'E'){
+      lastInput=""; //clears variable for new input ?
+      currentCoord = 0;
+      inputType = 6;
+      rotateClaw1();
+    }else if(c == 'Q'){
+      lastInput=""; //clears variable for new input ?
+      currentCoord = 0;
+      inputType = 6;
+      rotateClaw2();
     }
     else if (inputType == 0 && c == ',') {
       if(currentCoord == 0){

@@ -2,6 +2,8 @@ import serial
 import cv2
 import time
 
+ser = None
+
 class SerialWrapper:
 
     def __init__(self, device):
@@ -21,17 +23,7 @@ def playSong(notes):
             time.sleep(2)
 
 def main():
-    notes = ["C", "D", "E", "D", "C", "C", "C", "E", "E", "E", "E"]
-
     ser = SerialWrapper('COM4')
-    
-    #Runs code sequence. This is the loop()
-    while 1:
-        for x in notes:
-            ser.sendData(letterToNote(x))
-            time.sleep(1)
-            ser.sendData("D")
-            time.sleep(1)
 
 def letterToNote(letter):
     if letter == "A":
@@ -70,5 +62,5 @@ def noteF():
 def noteG():
     return "M0,20,100,"
     
-#if __name__ == "__main__":
-#    main()
+if __name__ == "__main__":
+    main()
