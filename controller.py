@@ -17,10 +17,19 @@ def playSong(notes):
     ser = SerialWrapper('COM4')
 
     print(notes)
+    time.sleep(2)
+    ser.sendData("E\r\n")
+    time.sleep(2)
+    ser.sendData("M0,0,200,\r\n")
+    time.sleep(5)
 
     for x in notes:
             ser.sendData(letterToNote(x))
-            time.sleep(2)
+            time.sleep(0.66)
+
+    ser.sendData("M0,0,0,\r\n")
+    time.sleep(2)
+    ser.sendData("R\r\n")
 
 def main():
     ser = SerialWrapper('COM4')
@@ -37,30 +46,30 @@ def letterToNote(letter):
     elif letter == "E":
         return noteE()
     elif letter == "F":
-        return noteE()
+        return noteF()
     elif letter == "G":
-        return noteE()
+        return noteG()
 
 def noteA():
-    return "M-15,20,100,"
+    return "M30,0,200,D" #
 
 def noteB():
-    return "M-30,20,100,"
+    return "M60,0,200,D"
 
 def noteC():
-    return "M-45,20,100,"
+    return "M-90,0,200,D"
 
 def noteD():
-    return "M45,20,100,"
+    return "M-60,0,200,D" #
 
 def noteE():
-    return "M30,20,100,"
+    return "M-30,0,200,D" #
 
 def noteF():
-    return "M15,20,100,"
+    return "M0,0,200,D" #
 
 def noteG():
-    return "M0,20,100,"
+    return "M0,0,200,D" #
     
 if __name__ == "__main__":
     main()

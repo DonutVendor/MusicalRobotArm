@@ -118,9 +118,9 @@ void loop() {
       lastInput=""; //clears variable for new input ?
       currentCoord = 0;
       inputType = 5;
-      moveTo(xMove, yMove + 25, zMove, 10);
+      moveTo(xMove, yMove + 30, zMove, 10);
       delay(100);
-      moveTo(xMove, yMove - 25, zMove, 5);
+      moveTo(xMove, yMove - 30, zMove, 5);
     }
     else if(c == 'C'){
       lastInput=""; //clears variable for new input ?

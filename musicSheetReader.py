@@ -50,7 +50,7 @@ def getLetter(height):
         return "ERROR"
 
 def main():
-    img = cv2.imread('music.png')
+    img = cv2.imread('marryhadalamb.png')
     #ret,img = cap.read()
     listOfLetters = []
     listToSend = []
@@ -84,12 +84,14 @@ def main():
 
             listOfLetters.append({'letter': getLetter(b), 'loc': a})
         
+    cv2.imshow('img',img)
+
+    time.sleep(2)
+
     #Send data to controller
     listOfLetters.sort(key=sortOrder)
     for x in listOfLetters:
         listToSend.append(x['letter'])
-
-    cv2.imshow('img',img)
 
     playSong(listToSend)
  
