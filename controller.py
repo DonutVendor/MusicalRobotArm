@@ -4,6 +4,8 @@ import time
 
 ser = None
 
+BPM = 120
+
 class SerialWrapper:
 
     def __init__(self, device):
@@ -25,10 +27,10 @@ def playSong(notes):
 
     for x in notes:
             ser.sendData(letterToNote(x))
-            time.sleep(0.66)
+            time.sleep(1 / (BPM / 60))
 
-    ser.sendData("M0,0,0,\r\n")
-    time.sleep(2)
+    ser.sendData("H\r\n")
+    time.sleep(4)
     ser.sendData("R\r\n")
 
 def main():
@@ -49,6 +51,11 @@ def letterToNote(letter):
         return noteF()
     elif letter == "G":
         return noteG()
+    elif letter == "R":
+        return playRest()
+
+def playRest():
+    return "G" #
 
 def noteA():
     return "M30,0,200,D" #
@@ -57,7 +64,7 @@ def noteB():
     return "M60,0,200,D"
 
 def noteC():
-    return "M-90,0,200,D"
+    return "M60,10,180,D"
 
 def noteD():
     return "M-60,0,200,D" #
