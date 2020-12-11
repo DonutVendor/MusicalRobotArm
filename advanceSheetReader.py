@@ -73,7 +73,10 @@ def notInList(lists, obj):
     return True
 
 def main():
-    img = cv2.imread('songs/yougotafriendinme.png')
+    #img = cv2.imread('songs/yougotafriendinme.png')
+    img = cv2.imread('songs/marryhadalamb_complex.png')
+    #img = cv2.imread('songs/random.png')    
+
     trebleclef = cv2.imread('detection_images/trebleclef.png')
     quarterrest = cv2.imread('detection_images/quarter_rest.png')
     #ret,img = cap.read()
@@ -81,6 +84,11 @@ def main():
     listToSend = []
 
     findAndRemove(img, trebleclef, 0.8)
+
+    #removeTreble = cv2.resize(img, (960, 1800)) 
+    #cv2.imshow('No Treble',removeTreble)
+
+    #restsIdentified = img.copy()
 
     #findAndRemove(img, quarterrest, 0.8)
     #Find quarter notes and add to Music List
@@ -97,8 +105,12 @@ def main():
             #cv2.putText(img, "R:{}".format(getLetter(b)[1]), (a, b), cv2.FONT_HERSHEY_SIMPLEX, .75, (0, 0, 255), 1)
             #cv2.putText(img, getLetter(b), (a, b), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
+            #restsIdentified = cv2.rectangle(restsIdentified, pt, (pt[0] + w, pt[1] + h), (255, 0, 255), 2)
+
             listOfLetters.append(obj)
         
+    #restsIdentified = cv2.resize(restsIdentified, (960, 1800)) 
+    #cv2.imshow('Rests Identified',restsIdentified)
 
     # Convert to grayscale. 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
@@ -149,8 +161,8 @@ def main():
             cv2.circle(img, (a, b), 1, (0, 0, 255), 3) 
 
             #cv2.putText(img, "{}".format(b), (a, b), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-            cv2.putText(img, "{}:{}".format(getLetter(b), b), (a, b), cv2.FONT_HERSHEY_SIMPLEX, .75, (0, 0, 255), 1)
-            #cv2.putText(img, getLetter(b), (a, b), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+            #cv2.putText(img, "{}:{}".format(getLetter(b), b), (a, b), cv2.FONT_HERSHEY_SIMPLEX, .75, (0, 0, 255), 1)
+            cv2.putText(img, getLetter(b), (a, b), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
             listOfLetters.append({'letter': getLetter(b), 'locx': a, 'locy': getLetter(b)[1]})
     
@@ -163,7 +175,7 @@ def main():
         listToSend.append(x['letter'][0])
 
     print(listToSend)
-    #playSong(listToSend)
+    playSong(listToSend)
  
     if cv2.waitKey(0) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
