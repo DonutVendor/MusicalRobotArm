@@ -22,6 +22,7 @@
 
 Project for ECE 578. Working to create robot arm that plays music.
 
+Video Demo: https://www.youtube.com/watch?v=lYeRmwsj23U
 
 ## Resources
 
